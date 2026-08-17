@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="680" viewBox="0 0 1200 680" role="img" aria-labelledby="title desc">
+  <title id="title">Writing Toolkit preview</title>
+  <desc id="desc">Conceptual preview of the Writing Tools menu and its three utilities inside Google Docs.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f8fbff"/>
+      <stop offset="1" stop-color="#eef4fb"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="12" stdDeviation="18" flood-color="#17324d" flood-opacity=".16"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="680" rx="28" fill="url(#bg)"/>
+  <text x="72" y="78" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="30" font-weight="700" fill="#172b3a">Writing Toolkit</text>
+  <text x="72" y="112" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="17" fill="#607283">Complementary writing and revision tools for Google Docs</text>
+
+  <g filter="url(#shadow)">
+    <rect x="72" y="148" width="1056" height="458" rx="18" fill="#fff"/>
+    <rect x="72" y="148" width="1056" height="54" rx="18" fill="#f8f9fa"/>
+    <rect x="72" y="184" width="1056" height="18" fill="#f8f9fa"/>
+    <circle cx="105" cy="175" r="7" fill="#ea4335"/>
+    <circle cx="129" cy="175" r="7" fill="#fbbc04"/>
+    <circle cx="153" cy="175" r="7" fill="#34a853"/>
+    <text x="188" y="182" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="16" font-weight="600" fill="#3c4043">Draft — Google Docs</text>
+
+    <rect x="72" y="202" width="1056" height="56" fill="#fff"/>
+    <text x="102" y="237" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="14" fill="#4d5156">File</text>
+    <text x="151" y="237" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="14" fill="#4d5156">Edit</text>
+    <text x="199" y="237" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="14" fill="#4d5156">View</text>
+    <rect x="246" y="213" width="112" height="34" rx="6" fill="#e8f0fe"/>
+    <text x="262" y="236" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="14" font-weight="600" fill="#174ea6">Writing Tools</text>
+
+    <rect x="246" y="251" width="258" height="160" rx="10" fill="#fff" stroke="#dadce0"/>
+    <text x="270" y="288" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="15" fill="#202124">Count Words</text>
+    <line x1="258" y1="306" x2="492" y2="306" stroke="#edf0f2"/>
+    <text x="270" y="340" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="15" fill="#202124">Compare Document Tabs</text>
+    <line x1="258" y1="358" x2="492" y2="358" stroke="#edf0f2"/>
+    <text x="270" y="392" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="15" fill="#202124">Export to HTML</text>
+
+    <rect x="556" y="288" width="510" height="242" rx="14" fill="#f8fafc" stroke="#e0e6eb"/>
+    <text x="586" y="326" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="13" font-weight="700" letter-spacing="1" fill="#607283">QUICK PREVIEW</text>
+
+    <rect x="586" y="350" width="138" height="132" rx="12" fill="#fff" stroke="#dbe3ea"/>
+    <circle cx="613" cy="378" r="10" fill="#1ca7ca"/>
+    <text x="635" y="383" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="14" font-weight="700" fill="#263746">Word count</text>
+    <text x="608" y="426" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="30" font-weight="700" fill="#1ca7ca">42,860</text>
+    <text x="608" y="451" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="12" fill="#73818d">by document tab</text>
+
+    <rect x="739" y="350" width="138" height="132" rx="12" fill="#fff" stroke="#dbe3ea"/>
+    <circle cx="766" cy="378" r="10" fill="#9b72b0"/>
+    <text x="788" y="383" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="14" font-weight="700" fill="#263746">Compare</text>
+    <rect x="760" y="410" width="40" height="8" rx="4" fill="#ef9a9a"/>
+    <rect x="809" y="410" width="46" height="8" rx="4" fill="#a5d6a7"/>
+    <rect x="760" y="431" width="29" height="8" rx="4" fill="#90caf9"/>
+    <rect x="798" y="431" width="57" height="8" rx="4" fill="#ce93d8"/>
+    <text x="760" y="463" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="12" fill="#73818d">track revisions</text>
+
+    <rect x="892" y="350" width="144" height="132" rx="12" fill="#fff" stroke="#dbe3ea"/>
+    <circle cx="919" cy="378" r="10" fill="#5b6670"/>
+    <text x="941" y="383" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="14" font-weight="700" fill="#263746">HTML export</text>
+    <text x="914" y="423" font-family="Consolas,monospace" font-size="12" fill="#6b4f8a">&lt;p&gt;</text>
+    <text x="946" y="423" font-family="Consolas,monospace" font-size="12" fill="#334e68">Your text</text>
+    <text x="1003" y="423" font-family="Consolas,monospace" font-size="12" fill="#6b4f8a">&lt;/p&gt;</text>
+    <text x="914" y="463" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="12" fill="#73818d">copy clean markup</text>
+  </g>
+
+  <rect x="856" y="62" width="272" height="42" rx="21" fill="#fff3cd" stroke="#f6d365"/>
+  <circle cx="882" cy="83" r="7" fill="#f59e0b"/>
+  <text x="900" y="89" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="14" font-weight="600" fill="#7a5411">Work in progress</text>
+</svg>
