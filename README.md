@@ -4,12 +4,12 @@
 ![Google Apps Script](https://img.shields.io/badge/Google%20Apps%20Script-4285F4?logo=googleappsscript&logoColor=white)
 ![Google Docs](https://img.shields.io/badge/Google%20Docs-4285F4?logo=googledocs&logoColor=white)
 
+![Portada de Writing Toolkit](docs/assets/writing-toolkit-cover.svg)
+
 Writing Toolkit es una colección experimental de herramientas complementarias para escribir y revisar textos dentro de Google Docs. Agrega un menú propio al documento para contar palabras con reglas personalizadas, comparar versiones guardadas en pestañas y convertir contenido a HTML.
 
 > [!IMPORTANT]
 > El proyecto todavía está en desarrollo. No reemplaza las funciones nativas de Google Docs ni una revisión editorial, ortográfica o humana. Está pensado como apoyo para organizar, escribir y revisar borradores.
-
-![Vista previa conceptual de Writing Toolkit](docs/assets/preview.svg)
 
 ## Funciones
 
@@ -18,6 +18,22 @@ Writing Toolkit es una colección experimental de herramientas complementarias p
 | **Count Words** | Cuenta las palabras del documento y muestra un desglose por pestaña. Excluye encabezados y permite omitir pestañas auxiliares. |
 | **Compare Document Tabs** | Compara dos pestañas por párrafos y señala contenido nuevo, eliminado, modificado, movido o dividido. |
 | **Export to HTML** | Convierte la pestaña activa a HTML y permite copiar el resultado desde una barra lateral. |
+
+## Muestra
+
+Las imágenes de demostración usan texto público inspirado en *The Little Prince* y contenido ficticio preparado para el README. No contienen borradores privados ni textos personales.
+
+### Conteo de palabras
+
+![Demo pública del contador de palabras](docs/assets/word-count-demo.svg)
+
+El contador presenta el total del documento y el desglose por pestaña para revisar rápidamente la distribución del borrador.
+
+### Comparación de versiones
+
+![Demo pública de comparación de pestañas](docs/assets/compare-demo.svg)
+
+La comparación enfrenta una versión original y una revisión, destacando párrafos modificados, movidos, divididos, nuevos o eliminados.
 
 ## Instalación
 
@@ -28,7 +44,6 @@ Writing Toolkit funciona como un proyecto de Apps Script vinculado a un document
 1. Abre el documento de Google Docs donde quieras utilizar el toolkit.
 2. Ve a **Extensiones → Apps Script**.
 3. Copia los archivos del repositorio al proyecto manteniendo estos nombres:
-
    - `Código.gs` ← contenido de `Código.js`
    - `WordCounter.gs` ← contenido de `WordCounter.js`
    - `TabComparaison.gs` ← contenido de `TabComparaison.js`
@@ -36,7 +51,6 @@ Writing Toolkit funciona como un proyecto de Apps Script vinculado a un document
    - `WcCounter.html`
    - `DiffTracker.html`
    - `Sidebar.html`
-
 4. Guarda el proyecto.
 5. Regresa al documento y vuelve a cargar la página.
 6. Aparecerá el menú **Writing Tools** en la barra superior.
@@ -44,7 +58,7 @@ Writing Toolkit funciona como un proyecto de Apps Script vinculado a un document
 
 ### Opción 2: instalación con clasp
 
-Requiere [Node.js](https://nodejs.org/) 20 o superior, Git y la herramienta oficial `clasp`.
+Requiere Node.js 20 o superior, Git y la herramienta oficial `clasp`.
 
 ```powershell
 git clone https://github.com/Andrefnx/Writing_Toolkit.git
@@ -53,12 +67,7 @@ npm install -g @google/clasp
 clasp login
 ```
 
-Después:
-
-1. Crea o abre un documento de prueba.
-2. Entra en **Extensiones → Apps Script**.
-3. Abre **Configuración del proyecto** y copia el **ID de secuencia de comandos**.
-4. Crea un archivo local `.clasp.json`:
+Después crea o abre un documento de prueba, entra en **Extensiones → Apps Script**, copia el **ID de secuencia de comandos** y crea un archivo local `.clasp.json`:
 
 ```json
 {
@@ -67,13 +76,11 @@ Después:
 }
 ```
 
-5. Envía los archivos al proyecto vacío:
+Envía los archivos con:
 
 ```powershell
 clasp push
 ```
-
-6. Recarga Google Docs.
 
 > [!WARNING]
 > `clasp push` reemplaza los archivos del proyecto de Apps Script conectado. Utiliza primero un documento de prueba o un proyecto vacío.
@@ -104,16 +111,7 @@ Estas reglas todavía están definidas directamente en `WordCounter.js`.
 4. Selecciona la versión revisada a la derecha.
 5. Pulsa **Compare**.
 
-La vista utiliza colores y relaciones de párrafos para mostrar:
-
-- texto eliminado;
-- texto nuevo;
-- párrafos movidos;
-- párrafos divididos;
-- modificaciones y reescrituras;
-- párrafos que permanecen iguales.
-
-La comparación es heurística: los resultados deben revisarse antes de tomar decisiones editoriales.
+La vista utiliza colores y relaciones de párrafos para mostrar texto eliminado, texto nuevo, párrafos movidos o divididos, modificaciones, reescrituras y párrafos que permanecen iguales. La comparación es heurística y los resultados deben revisarse antes de tomar decisiones editoriales.
 
 ### Exportar a HTML
 
@@ -128,21 +126,21 @@ Actualmente conserva encabezados, alineación, negrita, cursiva, subrayado, tach
 
 ```text
 Writing_Toolkit/
-├── Código.js              # Menú principal de Google Docs
-├── WordCounter.js         # Lógica del contador
-├── WcCounter.html         # Interfaz del contador
-├── TabComparaison.js      # Motor de comparación
-├── DiffTracker.html       # Interfaz de comparación
-├── HtmlExport.js          # Conversión a HTML
-├── Sidebar.html           # Barra lateral de exportación
-├── appsscript.json        # Manifiesto de Apps Script
+├── Código.js
+├── WordCounter.js
+├── WcCounter.html
+├── TabComparaison.js
+├── DiffTracker.html
+├── HtmlExport.js
+├── Sidebar.html
+├── appsscript.json
 └── docs/
-    ├── DEVELOPMENT.md     # Mapa técnico y sincronización
+    ├── DEVELOPMENT.md
     └── assets/
-        └── preview.svg    # Preview del proyecto
+        ├── writing-toolkit-cover.svg
+        ├── word-count-demo.svg
+        └── compare-demo.svg
 ```
-
-Los archivos ejecutables permanecen en la raíz para mantener sencilla y compatible la sincronización con Apps Script. La documentación y los recursos visuales se guardan en `docs/`.
 
 ## Estado y limitaciones
 
@@ -156,8 +154,8 @@ Los archivos ejecutables permanecen en la raíz para mantener sencilla y compati
 
 ## Desarrollo
 
-Consulta [docs/DEVELOPMENT.md](docs/DEVELOPMENT.md) para conocer la función de cada archivo y el flujo recomendado con `clasp` y Git.
+Consulta `docs/DEVELOPMENT.md` para conocer la función de cada archivo y el flujo recomendado con `clasp` y Git.
 
 ## Autor
 
-Desarrollado por [Andrea Henríquez](https://github.com/Andrefnx) como herramienta complementaria para escritura y revisión en Google Docs.
+Desarrollado por Andrea Henríquez como herramienta complementaria para escritura y revisión en Google Docs.
