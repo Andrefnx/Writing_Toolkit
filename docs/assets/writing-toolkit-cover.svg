@@ -6,22 +6,25 @@
   </g>
 
   <text x="90" y="135" fill="#f3f7fb" font-family="Arial,sans-serif" font-size="62" font-weight="700">Writing Toolkit</text>
-  <text x="94" y="180" fill="#16a8d3" font-family="Arial,sans-serif" font-size="21" font-weight="700">HERRAMIENTAS DE ESCRITURA Y REVISIÓN PARA GOOGLE DOCS</text>
-  <text x="94" y="245" fill="#d7dee7" font-family="Arial,sans-serif" font-size="29">Cuenta palabras, compara versiones y exporta a HTML</text>
-  <text x="94" y="286" fill="#d7dee7" font-family="Arial,sans-serif" font-size="29">sin salir de Google Docs.</text>
+  <text x="94" y="178" fill="#16a8d3" font-family="Arial,sans-serif" font-size="18" font-weight="700">HERRAMIENTAS DE ESCRITURA Y REVISIÓN</text>
+  <text x="94" y="204" fill="#16a8d3" font-family="Arial,sans-serif" font-size="18" font-weight="700">PARA GOOGLE DOCS</text>
+
+  <text x="94" y="258" fill="#d7dee7" font-family="Arial,sans-serif" font-size="28">Cuenta palabras, compara versiones</text>
+  <text x="94" y="298" fill="#d7dee7" font-family="Arial,sans-serif" font-size="28">y exporta a HTML sin salir de Google Docs.</text>
 
   <g font-family="Arial,sans-serif">
     <rect x="95" y="375" width="225" height="90" rx="14" fill="#101923" stroke="#263442"/>
     <text x="113" y="410" fill="#18b5dc" font-size="19" font-weight="700">CONTADOR</text>
     <text x="113" y="442" fill="#c5ced8" font-size="16">Desglose por pestaña</text>
 
-    <rect x="350" y="375" width="250" height="90" rx="14" fill="#101923" stroke="#263442"/>
+    <rect x="350" y="375" width="275" height="104" rx="14" fill="#101923" stroke="#263442"/>
     <text x="368" y="410" fill="#f5b23f" font-size="19" font-weight="700">COMPARAR</text>
-    <text x="368" y="442" fill="#c5ced8" font-size="16">Cambios, movimientos y divisiones</text>
+    <text x="368" y="439" fill="#c5ced8" font-size="15">Cambios, movimientos</text>
+    <text x="368" y="462" fill="#c5ced8" font-size="15">y divisiones de párrafos</text>
 
-    <rect x="95" y="495" width="225" height="90" rx="14" fill="#101923" stroke="#263442"/>
-    <text x="113" y="530" fill="#18b5dc" font-size="19" font-weight="700">HTML</text>
-    <text x="113" y="562" fill="#c5ced8" font-size="16">Exportación rápida</text>
+    <rect x="95" y="505" width="225" height="90" rx="14" fill="#101923" stroke="#263442"/>
+    <text x="113" y="540" fill="#18b5dc" font-size="19" font-weight="700">HTML</text>
+    <text x="113" y="572" fill="#c5ced8" font-size="16">Exportación rápida</text>
   </g>
 
   <rect x="740" y="105" width="770" height="655" rx="26" fill="#121820" stroke="#34414f" stroke-width="3"/>
@@ -80,5 +83,5 @@
   <text x="95" y="780" fill="#98a6b5" font-family="Arial,sans-serif" font-size="18">Repositorio · Andrefnx/Writing_Toolkit</text>
   <rect y="842" width="1600" height="58" fill="#0a0e13"/>
   <text x="95" y="878" fill="#f3f6fa" font-family="Arial,sans-serif" font-size="20" font-weight="700">Writing Toolkit</text>
-  <text x="330" y="878" fill="#a9b5c2" font-family="Arial,sans-serif" font-size="19">Herramientas experimentales para escritura y revisión en Google Docs</text>
+  <text x="330" y="878" fill="#a9b5c2" font-family="Arial,sans-serif" font-size="18">Herramientas experimentales para escritura y revisión en Google Docs</text>
 </svg>
