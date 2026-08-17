@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <style>
+      body { 
+        font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; 
+        margin: 0; 
+        padding: 16px; 
+        color: #202124; 
+        background-color: #f4f6f9; 
+      }
+      .card-total { 
+        background: #ffffff; 
+        border: 1px solid #e0e0e0; 
+        border-left: 6px solid #1CA7CA; 
+        padding: 14px 18px; 
+        border-radius: 8px; 
+        margin-bottom: 16px; 
+        box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+      }
+      .card-total .title { 
+        font-size: 11px; 
+        text-transform: uppercase; 
+        letter-spacing: 0.8px; 
+        color: #5f6368; 
+        font-weight: 700; 
+      }
+      .card-total .count { 
+        font-size: 24px; 
+        font-weight: 700; 
+        color: #1CA7CA; 
+        margin-top: 4px; 
+      }
+      .card-total .count span {
+        font-size: 13px;
+        font-weight: 500;
+        color: #5f6368;
+      }
+      .section-header { 
+        font-size: 11px; 
+        font-weight: 700; 
+        color: #5f6368; 
+        margin-bottom: 6px; 
+        text-transform: uppercase; 
+        letter-spacing: 0.5px;
+      }
+      .tab-list { 
+        background: #ffffff; 
+        border: 1px solid #e0e0e0; 
+        border-radius: 8px; 
+        padding: 4px 0; 
+        max-height: 240px; 
+        overflow-y: auto; 
+        box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+      }
+      .tab-item { 
+        display: flex; 
+        justify-content: space-between; 
+        align-items: center;
+        padding: 8px 14px; 
+        font-size: 12px; 
+        border-bottom: 1px solid #f1f3f4; 
+      }
+      .tab-item:last-child {
+        border-bottom: none;
+      }
+      .tab-item.container { 
+        background-color: #f8f9fa; 
+        font-weight: 600; 
+        color: #3c4043; 
+      }
+      .word-badge {
+        color: #241D68;
+        padding: 2px 6px;
+        border-radius: 10px;
+        font-weight: 600;
+        font-size: 11px;
+        white-space: nowrap;
+        margin-left: 8px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card-total">
+      <div class="title">Total Word Count</div>
+      <div class="count"><?= totalWordCount ?> <span>words</span></div>
+    </div>
+    <div class="section-header">Detailed Breakdown</div>
+    <div class="tab-list">
+      <? for (var i = 0; i < breakdownList.length; i++) { 
+         var item = breakdownList[i];
+         var indent = item.level * 14;
+         if (item.isContainer) { ?>
+           <div class="tab-item container" style="padding-left: <?= 14 + indent ?>px;">
+             <span>📁 <b><?= item.title ?></b></span>
+             <span style="color: #9aa0a6; font-size: 11px;">Container</span>
+           </div>
+      <? } else { 
+           var prefix = item.level > 0 ? '↳ ' : ''; ?>
+           <div class="tab-item" style="padding-left: <?= 14 + indent ?>px;" title="<?= item.title ?>">
+             <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; margin-right: 8px;"><?= prefix ?><b style="font-weight: 500;"><?= item.title ?></b></span>
+             <span class="word-badge"><?= item.wordsFormatted ?></span>
+           </div>
+      <? } 
+      } ?>
+    </div>
+  </body>
+</html>

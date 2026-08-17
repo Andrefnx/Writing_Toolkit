@@ -1,0 +1,1950 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <base target="_top">
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+      color: #202124;
+      background: #ffffff;
+      overflow: hidden;
+    }
+
+
+    /* ============================================================
+       MAIN
+    ============================================================ */
+
+    .main-layout {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      height: 100%;
+      padding: 0;
+    }
+
+
+    /* ============================================================
+       TOP BAR
+    ============================================================ */
+
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      background: #ffffff;
+
+      padding: 6px 10px;
+
+      border-radius: 8px;
+      border: 1px solid #dadce0;
+
+      flex-shrink: 0;
+    }
+
+    .legend-container {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+
+      font-size: 11px;
+      font-weight: 600;
+
+      color: #202124;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+
+      border-radius: 2px;
+
+      flex-shrink: 0;
+
+      background: #80868b;
+    }
+
+    .dot.deleted {
+      background: #d93025;
+    }
+
+    .dot.new {
+      background: #34a853;
+    }
+
+    .dot.moved {
+      background: #1ca7ca;
+    }
+
+    .dot.split {
+      background: #9b72b0;
+    }
+
+    .dot.modified {
+      background: #f9ab00;
+    }
+
+
+    /* ============================================================
+       BUTTONS
+    ============================================================ */
+
+    .actions-group {
+      display: flex;
+      gap: 8px;
+    }
+
+    button {
+      background: #1ca7ca;
+
+      color: #ffffff;
+
+      border: none;
+
+      padding: 6px 14px;
+
+      border-radius: 4px;
+
+      font-weight: 600;
+      font-size: 12px;
+
+      cursor: pointer;
+
+      height: 30px;
+
+      white-space: nowrap;
+
+      transition:
+        background-color 0.15s ease,
+        box-shadow 0.15s ease,
+        transform 0.08s ease;
+    }
+
+    button:hover {
+      background: #188eae;
+
+      box-shadow:
+        0 1px 3px rgba(60, 64, 67, 0.16);
+    }
+
+    button:active {
+      transform: translateY(1px);
+    }
+
+    button.btn-test {
+      background: #777777;
+    }
+
+    button.btn-test:hover {
+      background: #5f6368;
+    }
+
+
+    /* ============================================================
+       SIDE BY SIDE COLUMNS
+    ============================================================ */
+
+    .diff-container {
+      display: flex;
+      gap: 10px;
+
+      flex: 1;
+      min-height: 0;
+    }
+
+    .column {
+      flex: 1;
+
+      min-width: 0;
+      min-height: 0;
+
+      background: #ffffff;
+
+      border: 1px solid #dadce0;
+
+      border-radius: 8px;
+
+      display: flex;
+      flex-direction: column;
+
+      overflow: hidden;
+    }
+
+
+    /* ============================================================
+       COLUMN HEADER
+    ============================================================ */
+
+    .col-header {
+      background: #f8f9fa;
+
+      padding: 7px;
+
+      border-bottom: 1px solid #dadce0;
+
+      flex-shrink: 0;
+    }
+
+    .col-header select {
+      width: 100%;
+
+      height: 32px;
+
+      padding: 5px 9px;
+
+      border-radius: 5px;
+
+      border: 1px solid #dadce0;
+
+      font-size: 13px;
+
+      background: #ffffff;
+
+      color: #202124;
+
+      outline: none;
+
+      cursor: pointer;
+
+      transition:
+        border-color 0.15s ease,
+        box-shadow 0.15s ease;
+    }
+
+    .col-header select:hover {
+      border-color: #b8bcc1;
+    }
+
+    .col-header select:focus {
+      border-color: #1ca7ca;
+
+      box-shadow:
+        0 0 0 2px rgba(28, 167, 202, 0.10);
+    }
+
+
+    /* ============================================================
+       CONTENT AREA
+    ============================================================ */
+
+    .col-content {
+      position: relative;
+
+      flex: 1;
+      min-height: 0;
+
+      overflow-y: auto;
+      overflow-x: hidden;
+
+      padding: 8px 0 12px 0;
+
+      background: #ffffff;
+    }
+
+
+    /* ============================================================
+       PROCESSING VERTICAL LINE
+    ============================================================ */
+
+    .col-content.analyzing::before {
+      content: "";
+
+      position: absolute;
+
+      top: 8px;
+      bottom: 12px;
+
+      left: 42px;
+
+      width: 1px;
+
+      background: #9aa0a6;
+
+      pointer-events: none;
+
+      z-index: 1;
+    }
+
+
+    /* ============================================================
+       ANALYZING MESSAGE
+    ============================================================ */
+
+    .analyzing-message {
+      position: relative;
+
+      padding: 7px 10px 7px 53px;
+
+      color: #5f6368;
+
+      font-size: 13.5px;
+
+      line-height: 1.65;
+
+      z-index: 2;
+
+      animation:
+        analyzingPulse 1.4s ease-in-out infinite;
+    }
+
+    @keyframes analyzingPulse {
+
+      0%,
+      100% {
+        opacity: 0.55;
+      }
+
+      50% {
+        opacity: 1;
+      }
+
+    }
+
+
+    /* ============================================================
+       EMPTY STATE
+    ============================================================ */
+
+    .empty-state {
+      width: 100%;
+      height: 100%;
+
+      min-height: 300px;
+
+      display: flex;
+
+      flex-direction: column;
+
+      align-items: center;
+      justify-content: center;
+
+      padding: 30px 24px;
+
+      text-align: center;
+
+      user-select: none;
+
+      animation:
+        emptyStateIn 0.25s ease-out;
+    }
+
+    @keyframes emptyStateIn {
+
+      from {
+        opacity: 0;
+        transform: translateY(4px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+    }
+
+    .empty-state-icon {
+      width: 52px;
+      height: 52px;
+
+      display: flex;
+
+      align-items: center;
+      justify-content: center;
+
+      margin-bottom: 15px;
+
+      border: 1px solid #dfe3e7;
+
+      border-radius: 50%;
+
+      background:
+        linear-gradient(
+          145deg,
+          #ffffff 0%,
+          #f5f7f8 100%
+        );
+
+      color: #1ca7ca;
+
+      box-shadow:
+        0 2px 6px rgba(60, 64, 67, 0.08);
+
+      transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+    }
+
+    .empty-state:hover .empty-state-icon {
+      transform: translateY(-2px);
+
+      box-shadow:
+        0 4px 10px rgba(60, 64, 67, 0.11);
+    }
+
+    .empty-state-icon svg {
+      width: 22px;
+      height: 22px;
+    }
+
+    .empty-state-eyebrow {
+      margin-bottom: 6px;
+
+      color: #9aa0a6;
+
+      font-size: 9px;
+      font-weight: 700;
+
+      letter-spacing: 1.1px;
+
+      text-transform: uppercase;
+    }
+
+    .empty-state-title {
+      margin: 0;
+
+      color: #3c4043;
+
+      font-size: 15px;
+      font-weight: 600;
+
+      line-height: 1.4;
+    }
+
+    .empty-state-subtitle {
+      max-width: 280px;
+
+      margin: 7px 0 0 0;
+
+      color: #9aa0a6;
+
+      font-size: 11.5px;
+      font-weight: 400;
+
+      line-height: 1.55;
+    }
+
+    .empty-state-accent {
+      width: 28px;
+      height: 2px;
+
+      margin-top: 16px;
+
+      border-radius: 2px;
+
+      background: #1ca7ca;
+
+      opacity: 0.55;
+    }
+
+
+    /* ============================================================
+       PARAGRAPH BLOCK
+    ============================================================ */
+
+    .para-block {
+      position: relative;
+
+      display: flex;
+
+      width: 100%;
+
+      margin: 0;
+      padding: 0;
+
+      background: transparent;
+
+      border-radius: 0;
+
+      transition:
+        background-color 0.14s ease,
+        box-shadow 0.14s ease;
+    }
+
+    .para-block:hover {
+      background: #f8f9fa;
+    }
+
+
+    /* ============================================================
+       NUMBER AREA
+    ============================================================ */
+
+    .paragraph-number {
+      position: relative;
+
+      width: 43px;
+      min-width: 43px;
+
+      flex-shrink: 0;
+
+      display: flex;
+
+      justify-content: center;
+      align-items: flex-start;
+
+      padding-top: 7px;
+
+      background: transparent;
+
+      color: #5f6368;
+
+      font-size: 10px;
+      font-weight: 500;
+
+      z-index: 2;
+
+      transition:
+        color 0.14s ease;
+    }
+
+    .para-block:hover .paragraph-number {
+      color: #202124;
+    }
+
+
+    /* ============================================================
+       TEXT AREA
+    ============================================================ */
+
+    .paragraph-content {
+      flex: 1;
+
+      min-width: 0;
+
+      padding: 7px 10px;
+    }
+
+    .text {
+      display: block;
+
+      color: #202124;
+
+      font-size: 13.5px;
+
+      line-height: 1.65;
+
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+    }
+
+
+    /* ============================================================
+       BADGES
+    ============================================================ */
+
+    .badge {
+      display: inline-block;
+
+      font-weight: 600;
+
+      font-size: 10px;
+
+      padding: 2px 6px;
+
+      border-radius: 4px;
+
+      background: #f1f3f4;
+
+      color: #5f6368;
+
+      border: 1px solid transparent;
+
+      user-select: none;
+
+      transition:
+        background-color 0.14s ease,
+        color 0.14s ease,
+        border-color 0.14s ease;
+    }
+
+    .movement-badge,
+    .split-badge {
+      margin-left: 8px;
+
+      vertical-align: middle;
+    }
+
+
+    /* ============================================================
+       MOVED
+    ============================================================ */
+
+    .para-block.moved-row {
+      cursor: default;
+    }
+
+    .para-block.moved-row.move-hover {
+      background: #eef8fc;
+
+      box-shadow:
+        inset 2px 0 0 #b9e4ef;
+    }
+
+    .para-block.moved-row.move-hover .paragraph-number {
+      color: #2186a3;
+    }
+
+    .para-block.moved-row.move-hover .movement-badge {
+      background: #dff3f9;
+
+      color: #19738d;
+
+      border-color: #c7e9f2;
+    }
+
+
+    /* ============================================================
+       SPLIT
+    ============================================================ */
+
+    .para-block.split-row {
+      cursor: default;
+    }
+
+    .para-block.split-row.split-hover {
+      background: #f6f0fa;
+
+      box-shadow:
+        inset 2px 0 0 #d9c5e7;
+    }
+
+    .para-block.split-row.split-hover .paragraph-number {
+      color: #79558f;
+    }
+
+    .para-block.split-row.split-hover .split-badge {
+      background: #eee4f5;
+
+      color: #79558f;
+
+      border-color: #dfcfea;
+    }
+
+
+    /* ============================================================
+       SCROLLBAR
+    ============================================================ */
+
+    .col-content::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    .col-content::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .col-content::-webkit-scrollbar-thumb {
+      background: #9aa0a6;
+
+      border-radius: 8px;
+    }
+
+    .col-content::-webkit-scrollbar-thumb:hover {
+      background: #70757a;
+    }
+
+
+    /* ============================================================
+       ERROR
+    ============================================================ */
+
+    .error-message {
+      margin: 16px;
+
+      padding: 12px 14px;
+
+      border: 1px solid #f1c7c7;
+
+      border-radius: 6px;
+
+      background: #fff7f7;
+
+      color: #b3261e;
+
+      font-size: 12px;
+
+      line-height: 1.5;
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+  <div class="main-layout">
+
+
+    <div class="top-bar">
+
+      <div class="legend-container">
+
+        <div class="legend-item">
+          <div class="dot deleted"></div>
+          Deleted
+        </div>
+
+        <div class="legend-item">
+          <div class="dot new"></div>
+          New
+        </div>
+
+        <div class="legend-item">
+          <div class="dot moved"></div>
+          Moved
+        </div>
+
+        <div class="legend-item">
+          <div class="dot split"></div>
+          Split
+        </div>
+
+        <div class="legend-item">
+          <div class="dot modified"></div>
+          Modified
+        </div>
+
+      </div>
+
+
+      <div class="actions-group">
+
+        <button
+          type="button"
+          onclick="runCompare()"
+        >
+          Compare
+        </button>
+
+        <button
+          type="button"
+          class="btn-test"
+          onclick="runTestCompare()"
+        >
+          Test
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <div class="diff-container">
+
+
+      <div class="column">
+
+        <div class="col-header">
+
+          <select id="sourceTab">
+
+            <? for (var i = 0; i < tabList.length; i++) {
+
+              var tab = tabList[i];
+
+              var indent = '';
+
+              for (
+                var d = 0;
+                d < tab.depth;
+                d++
+              ) {
+
+                indent += '\u00A0\u00A0\u00A0\u00A0';
+
+              }
+
+              var prefix =
+                tab.depth > 0
+                  ? indent + '└─ '
+                  : '';
+
+            ?>
+
+              <option value="<?= tab.id ?>">
+                <?= prefix ?><?= tab.title ?>
+              </option>
+
+            <? } ?>
+
+          </select>
+
+        </div>
+
+
+        <div
+          class="col-content"
+          id="sourceCol"
+        >
+
+          <div class="empty-state">
+
+            <div class="empty-state-icon">
+
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+
+                <path d="M4 12h14"></path>
+                <path d="M11 6l-6 6 6 6"></path>
+
+              </svg>
+
+            </div>
+
+            <div class="empty-state-eyebrow">
+              Origin
+            </div>
+
+            <div class="empty-state-title">
+              Select tab of origin
+            </div>
+
+            <div class="empty-state-subtitle">
+              Choose the tab you want to use as the starting point for the comparison.
+            </div>
+
+            <div class="empty-state-accent"></div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="column">
+
+        <div class="col-header">
+
+          <select id="targetTab">
+
+            <? for (var i = 0; i < tabList.length; i++) {
+
+              var tab = tabList[i];
+
+              var indent = '';
+
+              for (
+                var d = 0;
+                d < tab.depth;
+                d++
+              ) {
+
+                indent += '\u00A0\u00A0\u00A0\u00A0';
+
+              }
+
+              var prefix =
+                tab.depth > 0
+                  ? indent + '└─ '
+                  : '';
+
+            ?>
+
+              <option value="<?= tab.id ?>">
+                <?= prefix ?><?= tab.title ?>
+              </option>
+
+            <? } ?>
+
+          </select>
+
+        </div>
+
+
+        <div
+          class="col-content"
+          id="targetCol"
+        >
+
+          <div class="empty-state">
+
+            <div class="empty-state-icon">
+
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+
+                <path d="M6 12h14"></path>
+                <path d="M13 6l6 6-6 6"></path>
+
+              </svg>
+
+            </div>
+
+            <div class="empty-state-eyebrow">
+              Secondary
+            </div>
+
+            <div class="empty-state-title">
+              Select secondary tab
+            </div>
+
+            <div class="empty-state-subtitle">
+              Choose the tab you want to compare against the origin tab.
+            </div>
+
+            <div class="empty-state-accent"></div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <script>
+
+
+    function runCompare() {
+
+      var sourceTabId =
+        document.getElementById(
+          'sourceTab'
+        ).value;
+
+      var targetTabId =
+        document.getElementById(
+          'targetTab'
+        ).value;
+
+      executeDiff(
+        sourceTabId,
+        targetTabId
+      );
+
+    }
+
+
+    function runTestCompare() {
+
+      var sourceSelect =
+        document.getElementById(
+          'sourceTab'
+        );
+
+      var targetSelect =
+        document.getElementById(
+          'targetTab'
+        );
+
+      setSelectByText(
+        sourceSelect,
+        [
+          "Test 1",
+          "Test1"
+        ]
+      );
+
+      setSelectByText(
+        targetSelect,
+        [
+          "Test 2",
+          "Test2"
+        ]
+      );
+
+      executeDiff(
+        sourceSelect.value,
+        targetSelect.value
+      );
+
+    }
+
+
+    function setSelectByText(
+      selectElement,
+      textVariants
+    ) {
+
+      for (
+        var i = 0;
+        i < selectElement.options.length;
+        i++
+      ) {
+
+        var optionText =
+          selectElement.options[i]
+            .text
+            .trim()
+            .toLowerCase();
+
+        for (
+          var j = 0;
+          j < textVariants.length;
+          j++
+        ) {
+
+          if (
+            optionText.includes(
+              textVariants[j]
+                .toLowerCase()
+            )
+          ) {
+
+            selectElement.selectedIndex =
+              i;
+
+            return;
+
+          }
+
+        }
+
+      }
+
+    }
+
+
+    function executeDiff(
+      sourceTabId,
+      targetTabId
+    ) {
+
+      var sourceCol =
+        document.getElementById(
+          'sourceCol'
+        );
+
+      var targetCol =
+        document.getElementById(
+          'targetCol'
+        );
+
+
+      sourceCol.classList.add(
+        'analyzing'
+      );
+
+      targetCol.classList.add(
+        'analyzing'
+      );
+
+
+      sourceCol.innerHTML =
+        '<div class="analyzing-message">' +
+        'Analyzing...' +
+        '</div>';
+
+      targetCol.innerHTML =
+        '<div class="analyzing-message">' +
+        'Analyzing...' +
+        '</div>';
+
+
+      google.script.run
+
+        .withSuccessHandler(
+          renderResults
+        )
+
+        .withFailureHandler(
+          function(error) {
+
+            sourceCol.classList.remove(
+              'analyzing'
+            );
+
+            targetCol.classList.remove(
+              'analyzing'
+            );
+
+
+            var message =
+              error &&
+              error.message
+                ? error.message
+                : String(error);
+
+
+            sourceCol.innerHTML =
+              '<div class="error-message">' +
+              escapeHtml(message) +
+              '</div>';
+
+            targetCol.innerHTML =
+              "";
+
+          }
+        )
+
+        .compareDocumentTabs(
+          sourceTabId,
+          targetTabId
+        );
+
+    }
+
+
+    function renderResults(data) {
+
+      var sourceCol =
+        document.getElementById(
+          'sourceCol'
+        );
+
+      var targetCol =
+        document.getElementById(
+          'targetCol'
+        );
+
+
+      sourceCol.classList.remove(
+        'analyzing'
+      );
+
+      targetCol.classList.remove(
+        'analyzing'
+      );
+
+
+      if (
+        data &&
+        data.error
+      ) {
+
+        sourceCol.innerHTML =
+          '<div class="error-message">' +
+          escapeHtml(
+            data.error
+          ) +
+          '</div>';
+
+        targetCol.innerHTML =
+          "";
+
+        return;
+
+      }
+
+
+      if (
+        !data ||
+        !data.sourceList ||
+        !data.targetList
+      ) {
+
+        sourceCol.innerHTML =
+          '<div class="error-message">' +
+          'Unable to render comparison results.' +
+          '</div>';
+
+        targetCol.innerHTML =
+          "";
+
+        return;
+
+      }
+
+
+      sourceCol.innerHTML =
+        buildColumnHTML(
+          data.sourceList,
+          true
+        );
+
+
+      targetCol.innerHTML =
+        buildColumnHTML(
+          data.targetList,
+          false
+        );
+
+    }
+
+
+    function escapeHtml(str) {
+
+      if (
+        str === null ||
+        str === undefined
+      ) {
+
+        return "";
+
+      }
+
+      return String(str)
+
+        .replace(
+          /&/g,
+          "&amp;"
+        )
+
+        .replace(
+          /</g,
+          "&lt;"
+        )
+
+        .replace(
+          />/g,
+          "&gt;"
+        )
+
+        .replace(
+          /"/g,
+          "&quot;"
+        )
+
+        .replace(
+          /'/g,
+          "&#039;"
+        );
+
+    }
+
+
+    function buildColumnHTML(
+      list,
+      isSource
+    ) {
+
+      var html = "";
+
+      if (
+        !list ||
+        !list.length
+      ) {
+
+        return "";
+
+      }
+
+
+      for (
+        var i = 0;
+        i < list.length;
+        i++
+      ) {
+
+        var item =
+          list[i];
+
+
+        var paragraphNumber =
+          isSource
+            ? item.oldIndex
+            : item.newIndex;
+
+
+        var numberHtml =
+          paragraphNumber
+            ? '<div class="paragraph-number">' +
+              escapeHtml(
+                paragraphNumber
+              ) +
+              '</div>'
+            : '<div class="paragraph-number"></div>';
+
+
+        var movementHtml =
+          "";
+
+        var movedClass =
+          "";
+
+        var moveKey =
+          "";
+
+
+        if (
+          item.status === "MOVED"
+        ) {
+
+          movedClass =
+            " moved-row";
+
+          moveKey =
+            "move-" +
+            String(item.oldIndex) +
+            "-" +
+            String(item.newIndex);
+
+
+          movementHtml =
+            '<span class="badge movement-badge">' +
+            'P' +
+            escapeHtml(
+              item.oldIndex
+            ) +
+            ' → P' +
+            escapeHtml(
+              item.newIndex
+            ) +
+            '</span>';
+
+        }
+
+
+        var splitClass =
+          "";
+
+        var splitKey =
+          "";
+
+        var splitBadgeHtml =
+          "";
+
+
+        if (
+          item.status === "SPLIT"
+        ) {
+
+          splitClass =
+            " split-row";
+
+          splitKey =
+            "split-" +
+            String(item.splitGroup);
+
+
+          var splitTargets =
+            item.splitTargets || [];
+
+
+          var splitTargetText =
+            splitTargets.length
+              ? splitTargets.map(
+                  function(targetNumber) {
+
+                    return (
+                      'P' +
+                      String(targetNumber)
+                    );
+
+                  }
+                ).join('|')
+              : (
+                  item.newIndex
+                    ? 'P' +
+                      String(item.newIndex)
+                    : ''
+                );
+
+
+          splitBadgeHtml =
+            '<span class="badge split-badge">' +
+            'P' +
+            escapeHtml(
+              item.splitGroup
+            ) +
+            ' → ' +
+            escapeHtml(
+              splitTargetText
+            ) +
+            '</span>';
+
+        }
+
+
+        var contentHtml =
+          escapeHtml(
+            item.text
+          );
+
+
+        html +=
+
+          '<div class="para-block' +
+          movedClass +
+          splitClass +
+          '"' +
+
+          (
+            moveKey
+              ? ' data-move-key="' +
+                escapeHtml(moveKey) +
+                '"'
+              : ''
+          ) +
+
+          (
+            splitKey
+              ? ' data-split-key="' +
+                escapeHtml(splitKey) +
+                '"'
+              : ''
+          ) +
+
+          '>' +
+
+            numberHtml +
+
+            '<div class="paragraph-content">' +
+
+              '<div class="text">' +
+
+                contentHtml +
+
+                movementHtml +
+
+                splitBadgeHtml +
+
+              '</div>' +
+
+            '</div>' +
+
+          '</div>';
+
+      }
+
+
+      return html;
+
+    }
+
+
+    function scrollMatchingRowsIntoView(
+      originRow,
+      selector,
+      attributeName,
+      key
+    ) {
+
+      if (
+        !originRow ||
+        !key
+      ) {
+        return;
+      }
+
+
+      var originColumn =
+        originRow.closest(
+          ".col-content"
+        );
+
+
+      var rows =
+        document.querySelectorAll(
+          selector
+        );
+
+
+      var matchesByColumn =
+        [];
+
+
+      for (
+        var i = 0;
+        i < rows.length;
+        i++
+      ) {
+
+        var match =
+          rows[i];
+
+
+        if (
+          match.getAttribute(
+            attributeName
+          ) !== key
+        ) {
+          continue;
+        }
+
+
+        var targetColumn =
+          match.closest(
+            ".col-content"
+          );
+
+
+        if (
+          !targetColumn ||
+          targetColumn === originColumn
+        ) {
+          continue;
+        }
+
+
+        var columnGroup =
+          null;
+
+
+        for (
+          var g = 0;
+          g < matchesByColumn.length;
+          g++
+        ) {
+
+          if (
+            matchesByColumn[g].column ===
+            targetColumn
+          ) {
+
+            columnGroup =
+              matchesByColumn[g];
+
+            break;
+
+          }
+
+        }
+
+
+        if (
+          !columnGroup
+        ) {
+
+          columnGroup = {
+
+            column:
+              targetColumn,
+
+            rows:
+              []
+
+          };
+
+
+          matchesByColumn.push(
+            columnGroup
+          );
+
+        }
+
+
+        columnGroup.rows.push(
+          match
+        );
+
+      }
+
+
+      for (
+        var groupIndex = 0;
+        groupIndex < matchesByColumn.length;
+        groupIndex++
+      ) {
+
+        var group =
+          matchesByColumn[
+            groupIndex
+          ];
+
+
+        if (
+          !group.rows.length
+        ) {
+          continue;
+        }
+
+
+        group.rows.sort(
+          function(a, b) {
+
+            return (
+              a.offsetTop -
+              b.offsetTop
+            );
+
+          }
+        );
+
+
+        var firstRow =
+          group.rows[0];
+
+        var lastRow =
+          group.rows[
+            group.rows.length - 1
+          ];
+
+
+        var groupTop =
+          firstRow.offsetTop;
+
+
+        var groupBottom =
+          lastRow.offsetTop +
+          lastRow.offsetHeight;
+
+
+        var groupHeight =
+          groupBottom -
+          groupTop;
+
+
+        var viewportHeight =
+          group.column.clientHeight;
+
+
+        var targetTop;
+
+
+        if (
+          groupHeight <=
+          viewportHeight - 24
+        ) {
+
+          targetTop =
+            groupTop -
+            (
+              viewportHeight -
+              groupHeight
+            ) / 2;
+
+        } else {
+
+          targetTop =
+            groupTop - 12;
+
+        }
+
+
+        group.column.scrollTo({
+
+          top:
+            Math.max(
+              0,
+              targetTop
+            ),
+
+          behavior:
+            "smooth"
+
+        });
+
+      }
+
+    }
+
+
+    document.addEventListener(
+      "mouseover",
+      function(event) {
+
+        var row =
+          event.target.closest(
+            ".para-block.moved-row"
+          );
+
+
+        if (
+          !row
+        ) {
+          return;
+        }
+
+
+        var moveKey =
+          row.getAttribute(
+            "data-move-key"
+          );
+
+
+        if (
+          !moveKey
+        ) {
+          return;
+        }
+
+
+        var related =
+          event.relatedTarget;
+
+
+        if (
+          !related ||
+          !row.contains(related)
+        ) {
+
+          scrollMatchingRowsIntoView(
+            row,
+            ".para-block.moved-row",
+            "data-move-key",
+            moveKey
+          );
+
+        }
+
+
+        var rows =
+          document.querySelectorAll(
+            ".para-block.moved-row"
+          );
+
+
+        rows.forEach(
+          function(match) {
+
+            if (
+              match.getAttribute(
+                "data-move-key"
+              ) === moveKey
+            ) {
+
+              match.classList.add(
+                "move-hover"
+              );
+
+            }
+
+          }
+        );
+
+      }
+    );
+
+
+    document.addEventListener(
+      "mouseout",
+      function(event) {
+
+        var row =
+          event.target.closest(
+            ".para-block.moved-row"
+          );
+
+
+        if (
+          !row
+        ) {
+          return;
+        }
+
+
+        var related =
+          event.relatedTarget;
+
+
+        if (
+          related &&
+          row.contains(related)
+        ) {
+          return;
+        }
+
+
+        var moveKey =
+          row.getAttribute(
+            "data-move-key"
+          );
+
+
+        if (
+          !moveKey
+        ) {
+          return;
+        }
+
+
+        var rows =
+          document.querySelectorAll(
+            ".para-block.moved-row"
+          );
+
+
+        rows.forEach(
+          function(match) {
+
+            if (
+              match.getAttribute(
+                "data-move-key"
+              ) === moveKey
+            ) {
+
+              match.classList.remove(
+                "move-hover"
+              );
+
+            }
+
+          }
+        );
+
+      }
+    );
+
+
+    document.addEventListener(
+      "mouseover",
+      function(event) {
+
+        var row =
+          event.target.closest(
+            ".para-block.split-row"
+          );
+
+
+        if (
+          !row
+        ) {
+          return;
+        }
+
+
+        var splitKey =
+          row.getAttribute(
+            "data-split-key"
+          );
+
+
+        if (
+          !splitKey
+        ) {
+          return;
+        }
+
+
+        var related =
+          event.relatedTarget;
+
+
+        if (
+          !related ||
+          !row.contains(related)
+        ) {
+
+          scrollMatchingRowsIntoView(
+            row,
+            ".para-block.split-row",
+            "data-split-key",
+            splitKey
+          );
+
+        }
+
+
+        var rows =
+          document.querySelectorAll(
+            ".para-block.split-row"
+          );
+
+
+        rows.forEach(
+          function(match) {
+
+            if (
+              match.getAttribute(
+                "data-split-key"
+              ) === splitKey
+            ) {
+
+              match.classList.add(
+                "split-hover"
+              );
+
+            }
+
+          }
+        );
+
+      }
+    );
+
+
+    document.addEventListener(
+      "mouseout",
+      function(event) {
+
+        var row =
+          event.target.closest(
+            ".para-block.split-row"
+          );
+
+
+        if (
+          !row
+        ) {
+          return;
+        }
+
+
+        var related =
+          event.relatedTarget;
+
+
+        if (
+          related &&
+          row.contains(related)
+        ) {
+          return;
+        }
+
+
+        var splitKey =
+          row.getAttribute(
+            "data-split-key"
+          );
+
+
+        if (
+          !splitKey
+        ) {
+          return;
+        }
+
+
+        var rows =
+          document.querySelectorAll(
+            ".para-block.split-row"
+          );
+
+
+        rows.forEach(
+          function(match) {
+
+            if (
+              match.getAttribute(
+                "data-split-key"
+              ) === splitKey
+            ) {
+
+              match.classList.remove(
+                "split-hover"
+              );
+
+            }
+
+          }
+        );
+
+      }
+    );
+
+  </script>
+
+</body>
+
+</html>

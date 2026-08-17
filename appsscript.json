@@ -1,0 +1,7 @@
+{
+  "timeZone": "America/Punta_Arenas",
+  "dependencies": {
+  },
+  "exceptionLogging": "STACKDRIVER",
+  "runtimeVersion": "V8"
+}
