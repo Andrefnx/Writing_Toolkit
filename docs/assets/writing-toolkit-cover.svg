@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <rect width="1600" height="900" fill="#0b0f14"/>
+  <g fill="none" stroke="#17202a" opacity="0.7">
+    <path d="M0 80h1600M0 160h1600M0 240h1600M0 320h1600M0 400h1600M0 480h1600M0 560h1600M0 640h1600M0 720h1600M0 800h1600"/>
+    <path d="M80 0v900M160 0v900M240 0v900M320 0v900M400 0v900M480 0v900M560 0v900M640 0v900M720 0v900M800 0v900M880 0v900M960 0v900M1040 0v900M1120 0v900M1200 0v900M1280 0v900M1360 0v900M1440 0v900M1520 0v900"/>
+  </g>
+  <text x="90" y="135" fill="#f3f7fb" font-family="Arial,sans-serif" font-size="62" font-weight="700">Writing Toolkit</text>
+  <text x="94" y="178" fill="#16a8d3" font-family="Arial,sans-serif" font-size="18" font-weight="700">HERRAMIENTAS DE ESCRITURA Y REVISIÓN</text>
+  <text x="94" y="204" fill="#16a8d3" font-family="Arial,sans-serif" font-size="18" font-weight="700">PARA GOOGLE DOCS</text>
+  <text x="94" y="258" fill="#d7dee7" font-family="Arial,sans-serif" font-size="28">Cuenta palabras, compara versiones</text>
+  <text x="94" y="298" fill="#d7dee7" font-family="Arial,sans-serif" font-size="28">y exporta a HTML sin salir de Google Docs.</text>
+  <g font-family="Arial,sans-serif">
+    <rect x="95" y="375" width="225" height="90" rx="14" fill="#101923" stroke="#263442"/><text x="113" y="410" fill="#18b5dc" font-size="19" font-weight="700">CONTADOR</text><text x="113" y="442" fill="#c5ced8" font-size="16">Desglose por pestaña</text>
+    <rect x="350" y="375" width="275" height="104" rx="14" fill="#101923" stroke="#263442"/><text x="368" y="410" fill="#f5b23f" font-size="19" font-weight="700">COMPARAR</text><text x="368" y="439" fill="#c5ced8" font-size="15">Cambios, movimientos</text><text x="368" y="462" fill="#c5ced8" font-size="15">y divisiones de párrafos</text>
+    <rect x="95" y="505" width="225" height="90" rx="14" fill="#101923" stroke="#263442"/><text x="113" y="540" fill="#18b5dc" font-size="19" font-weight="700">HTML</text><text x="113" y="572" fill="#c5ced8" font-size="16">Exportación rápida</text>
+  </g>
+  <rect x="740" y="105" width="770" height="655" rx="26" fill="#121820" stroke="#34414f" stroke-width="3"/><rect x="775" y="145" width="700" height="570" rx="14" fill="#f7f9fb"/><rect x="775" y="145" width="700" height="50" fill="#eef2f5"/>
+  <text x="795" y="177" fill="#3d454e" font-family="Arial,sans-serif" font-size="17" font-weight="700">Writing Tools</text><text x="1280" y="177" fill="#0a91b7" font-family="Arial,sans-serif" font-size="17" font-weight="700">Comparar</text><line x1="1130" y1="220" x2="1130" y2="675" stroke="#d5dce3" stroke-width="2"/>
+  <text x="800" y="245" fill="#28323d" font-family="Arial,sans-serif" font-size="18" font-weight="700">Original — El Principito</text><text x="1160" y="245" fill="#28323d" font-family="Arial,sans-serif" font-size="18" font-weight="700">Revisión</text>
+  <g font-family="Arial,sans-serif" font-size="16" fill="#202832">
+    <rect x="795" y="275" width="310" height="72" rx="7" fill="#fff"/><text x="812" y="306">El principito miró</text><text x="812" y="330">el atardecer.</text><rect x="1150" y="275" width="300" height="72" rx="7" fill="#eef9f2"/><text x="1167" y="306">El principito miró el atardecer</text><text x="1167" y="330" fill="#16884f">en silencio.</text>
+    <rect x="795" y="370" width="310" height="72" rx="7" fill="#eef7fb"/><text x="812" y="401">Preguntó al aviador</text><text x="812" y="425">por las estrellas.</text><rect x="1150" y="370" width="300" height="72" rx="7" fill="#eef9f2"/><text x="1167" y="401">Preguntó al aviador</text><text x="1167" y="425" fill="#16884f">por qué importaban las estrellas.</text>
+    <rect x="795" y="465" width="310" height="72" rx="7" fill="#fff"/><text x="812" y="496">Una rosa esperaba</text><text x="812" y="520">en su pequeño planeta.</text><rect x="1150" y="465" width="300" height="72" rx="7" fill="#eef9f2"/><text x="1167" y="496">Una rosa </text><text x="1232" y="496" fill="#16884f">orgullosa</text><text x="1310" y="496"> esperaba</text><text x="1167" y="520">en su planeta.</text>
+    <rect x="795" y="560" width="310" height="72" rx="7" fill="#eef7fb"/><text x="812" y="591">Los adultos preferían</text><text x="812" y="615">los números.</text><rect x="1150" y="560" width="300" height="72" rx="7" fill="#fff7ef"/><text x="1167" y="591">Los adultos </text><text x="1260" y="591" fill="#b43b3b" text-decoration="line-through">preferían</text><text x="1337" y="591" fill="#16884f"> confiaban</text><text x="1167" y="615" fill="#16884f">más en los números.</text>
+  </g>
+  <g font-family="Arial,sans-serif" font-size="14" fill="#5d6873"><rect x="1150" y="655" width="12" height="12" fill="#b43b3b"/><text x="1170" y="666">eliminado</text><rect x="1260" y="655" width="12" height="12" fill="#16884f"/><text x="1280" y="666">agregado</text></g>
+  <g font-family="Arial,sans-serif" font-size="16" font-weight="700" fill="#e9eef5"><rect x="95" y="675" width="168" height="36" rx="10" fill="#111820" stroke="#2b3948"/><text x="111" y="699">Apps Script</text><rect x="278" y="675" width="120" height="36" rx="10" fill="#111820" stroke="#2b3948"/><text x="294" y="699">JavaScript</text><rect x="413" y="675" width="75" height="36" rx="10" fill="#111820" stroke="#2b3948"/><text x="432" y="699">HTML</text><rect x="503" y="675" width="122" height="36" rx="10" fill="#111820" stroke="#2b3948"/><text x="519" y="699">Google Docs</text></g>
+  <text x="95" y="780" fill="#98a6b5" font-family="Arial,sans-serif" font-size="18">Repositorio · Andrefnx/Writing_Toolkit</text><rect y="842" width="1600" height="58" fill="#0a0e13"/><text x="95" y="878" fill="#f3f6fa" font-family="Arial,sans-serif" font-size="20" font-weight="700">Writing Toolkit</text><text x="330" y="878" fill="#a9b5c2" font-family="Arial,sans-serif" font-size="18">Herramientas experimentales para escritura y revisión en Google Docs</text>
+</svg>
