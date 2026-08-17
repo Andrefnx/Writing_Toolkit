@@ -29,13 +29,13 @@ Writing Toolkit funciona como un proyecto de Apps Script vinculado a un document
 2. Ve a **Extensiones → Apps Script**.
 3. Copia los archivos del repositorio al proyecto manteniendo estos nombres:
 
-   - \`Código.gs\` ← contenido de \`Código.js\`
-   - \`WordCounter.gs\` ← contenido de \`WordCounter.js\`
-   - \`TabComparaison.gs\` ← contenido de \`TabComparaison.js\`
-   - \`HtmlExport.gs\` ← contenido de \`HtmlExport.js\`
-   - \`WcCounter.html\`
-   - \`DiffTracker.html\`
-   - \`Sidebar.html\`
+   - `Código.gs` ← contenido de `Código.js`
+   - `WordCounter.gs` ← contenido de `WordCounter.js`
+   - `TabComparaison.gs` ← contenido de `TabComparaison.js`
+   - `HtmlExport.gs` ← contenido de `HtmlExport.js`
+   - `WcCounter.html`
+   - `DiffTracker.html`
+   - `Sidebar.html`
 
 4. Guarda el proyecto.
 5. Regresa al documento y vuelve a cargar la página.
@@ -44,39 +44,39 @@ Writing Toolkit funciona como un proyecto de Apps Script vinculado a un document
 
 ### Opción 2: instalación con clasp
 
-Requiere [Node.js](https://nodejs.org/) 20 o superior, Git y la herramienta oficial \`clasp\`.
+Requiere [Node.js](https://nodejs.org/) 20 o superior, Git y la herramienta oficial `clasp`.
 
-\`\`\`powershell
+```powershell
 git clone https://github.com/Andrefnx/Writing_Toolkit.git
 cd Writing_Toolkit
 npm install -g @google/clasp
 clasp login
-\`\`\`
+```
 
 Después:
 
 1. Crea o abre un documento de prueba.
 2. Entra en **Extensiones → Apps Script**.
 3. Abre **Configuración del proyecto** y copia el **ID de secuencia de comandos**.
-4. Crea un archivo local \`.clasp.json\`:
+4. Crea un archivo local `.clasp.json`:
 
-\`\`\`json
+```json
 {
   "scriptId": "PEGA_AQUI_TU_ID",
   "rootDir": ""
 }
-\`\`\`
+```
 
 5. Envía los archivos al proyecto vacío:
 
-\`\`\`powershell
+```powershell
 clasp push
-\`\`\`
+```
 
 6. Recarga Google Docs.
 
 > [!WARNING]
-> \`clasp push\` reemplaza los archivos del proyecto de Apps Script conectado. Utiliza primero un documento de prueba o un proyecto vacío.
+> `clasp push` reemplaza los archivos del proyecto de Apps Script conectado. Utiliza primero un documento de prueba o un proyecto vacío.
 
 ## Cómo usarlo
 
@@ -88,13 +88,13 @@ clasp push
 
 Reglas actuales:
 
-- omite completamente las pestañas llamadas \`Scenes\`, \`CUT\` y \`Originals\`;
-- en una pestaña llamada \`Draft\`, cuenta sus pestañas hijas, no el contenido del contenedor;
+- omite completamente las pestañas llamadas `Scenes`, `CUT` y `Originals`;
+- en una pestaña llamada `Draft`, cuenta sus pestañas hijas, no el contenido del contenedor;
 - excluye títulos, subtítulos y encabezados;
 - incluye encabezados de página, pies de página y notas al pie;
 - separa palabras por espacios, guiones y rayas.
 
-Estas reglas todavía están definidas directamente en \`WordCounter.js\`.
+Estas reglas todavía están definidas directamente en `WordCounter.js`.
 
 ### Comparar pestañas
 
@@ -126,7 +126,7 @@ Actualmente conserva encabezados, alineación, negrita, cursiva, subrayado, tach
 
 ## Estructura del proyecto
 
-\`\`\`text
+```text
 Writing_Toolkit/
 ├── Código.js              # Menú principal de Google Docs
 ├── WordCounter.js         # Lógica del contador
@@ -140,9 +140,9 @@ Writing_Toolkit/
     ├── DEVELOPMENT.md     # Mapa técnico y sincronización
     └── assets/
         └── preview.svg    # Preview del proyecto
-\`\`\`
+```
 
-Los archivos ejecutables permanecen en la raíz para mantener sencilla y compatible la sincronización con Apps Script. La documentación y los recursos visuales se guardan en \`docs/\`.
+Los archivos ejecutables permanecen en la raíz para mantener sencilla y compatible la sincronización con Apps Script. La documentación y los recursos visuales se guardan en `docs/`.
 
 ## Estado y limitaciones
 
@@ -156,7 +156,7 @@ Los archivos ejecutables permanecen en la raíz para mantener sencilla y compati
 
 ## Desarrollo
 
-Consulta [docs/DEVELOPMENT.md](docs/DEVELOPMENT.md) para conocer la función de cada archivo y el flujo recomendado con \`clasp\` y Git.
+Consulta [docs/DEVELOPMENT.md](docs/DEVELOPMENT.md) para conocer la función de cada archivo y el flujo recomendado con `clasp` y Git.
 
 ## Autor
 
